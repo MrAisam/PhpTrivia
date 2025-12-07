@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage Questions</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <script>
+        let editingId = null;
+
+        async function loadQuestions() {
+            const response = await fetch("manage_questions.php?fetch=1");
+            const data = await response.json();
+            const tableBody = document.getElementById("questions-body");
+            tableBody.innerHTML = "";
+
+            data.forEach(row => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td>${row.id}</td>
+                    <td>${row.question}</td>
+                    <td>${row.option1}</td>
+                    <td>${row.option2}</td>
+                    <td>${row.option3}</td>
+                    <td>${row.option4}</td>
+                    <td>${row.correct_answer}</td>
+                    <td>
+                        <button onclick="editQuestion(${row.id}, '${row.question}', '${row.option1}', '${row.option2}', '${row.option3}', '${row.option4}', '${row.correct_answer}')">Edit</button>
+                        <a href="manage_questions.php?delete=${row.id}" onclick="return confirm('Are you sure?')">Delete</a>
+                    </td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        function editQuestion(id, q, o1, o2, o3, o4, correct) {
+            editingId = id;
+            document.getElementById("form-title").innerText = "Edit Question";
+            document.getElementById("id").value = id;
+            document.getElementById("question").value = q;
+            document.getElementById("option1").value = o1;
+            document.getElementById("option2").value = o2;
+            document.getElementById("option3").value = o3;
+            document.getElementById("option4").value = o4;
+            document.getElementById("correct_answer").value = correct;
+            document.getElementById("submit-btn").name = "update";
+            document.getElementById("submit-btn").innerText = "Update Question";
+        }
+
+        function resetForm() {
+            editingId = null;
+            document.getElementById("form-title").innerText = "Add New Question";
+            document.getElementById("question-form").reset();
+            document.getElementById("submit-btn").name = "add";
+            document.getElementById("submit-btn").innerText = "Add Question";
+        }
+
+        window.onload = loadQuestions;
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Manage Quiz Questions</h1>
+    </header>
+
+    <!-- Form (Add & Update) -->
+    <div class="form-box">
+        <h2 id="form-title">Add New Question</h2>
+        <form id="question-form" method="POST" action="manage_questions.php">
+            <input type="hidden" name="id" id="id">
+            <textarea name="question" id="question" placeholder="Enter question" required></textarea><br>
+            <input type="text" name="option1" id="option1" placeholder="Option 1" required><br>
+            <input type="text" name="option2" id="option2" placeholder="Option 2" required><br>
+            <input type="text" name="option3" id="option3" placeholder="Option 3" required><br>
+            <input type="text" name="option4" id="option4" placeholder="Option 4" required><br>
+            <input type="text" name="correct_answer" id="correct_answer" placeholder="Correct Answer" required><br>
+            <button type="submit" id="submit-btn" name="add">Add Question</button>
+            <button type="button" onclick="resetForm()">Cancel</button>
+        </form>
+    </div>
+
+    <!-- Table -->
+    <h2>Existing Questions</h2>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Question</th>
+                    <th>Option 1</th>
+                    <th>Option 2</th>
+                    <th>Option 3</th>
+                    <th>Option 4</th>
+                    <th>Correct Answer</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="questions-body">
+                <!-- Filled dynamically by JS -->
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

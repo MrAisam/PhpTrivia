@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/include.js" defer></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f6f9;
+            color: #333;
+            text-align: center;
+        }
+
+        .about-container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+            text-align: left;
+        }
+
+        h2 {
+            color: #007BFF;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin: 12px 0;
+            line-height: 1.6;
+        }
+
+        .about-box {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 8px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div data-include="../php/header.php"></div>
+
+    <main class="about-container">
+        <div class="about-box">
+            <h2>About This Trivia Game 🎯</h2>
+            <p>This trivia website is built with <strong>PHP, MySQL, and WAMP server</strong>.</p>
+            <p>It is designed to make learning fun and interactive. You can register, log in, and challenge yourself with quizzes across various topics.</p>
+            
+            <h3>✨ Features:</h3>
+            <ul>
+                <li>🧠 Multiple-choice Trivia questions</li>
+                <li>🔐 Secure user login and registration</li>
+                <li>📊 Score tracking (coming soon!)</li>
+                <li>🎨 Simple and responsive design</li>
+            </ul>
+
+            <p>Our goal is to help you <strong>learn something new</strong> while having fun. Play daily to sharpen your knowledge!</p>
+        </div>
+    </main>
+
+    <div data-include="footer.html"></div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Trivia Game</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/include.js" defer></script>
+</head>
+<body>
+    <div data-include="../php/header.php"></div>
+
+    <main class="quiz-container">
+        <h2>Trivia Start!🎉</h2>
+        <p>Click the button below to load your quiz questions.</p>
+        <form action="../php/trivia.php" method="POST">
+            <button type="submit">Load Questions</button>
+        </form>
+        <p class="note">✨ More quiz categories coming soon!</p>
+    </main>
+
+    <div data-include="footer.html"></div>
+</body>
+</html>

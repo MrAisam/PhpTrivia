@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/include.js" defer></script>
+</head>
+<body>
+    <div data-include="../php/header.php"></div>
+
+    <main class="form-box">
+        <h2>Login</h2>
+
+        <div id="message">
+            <script>
+                const params = new URLSearchParams(window.location.search);
+                if (params.has("msg")) {
+                    const msg = decodeURIComponent(params.get("msg"));
+                    document.getElementById("message").innerHTML = `<p style="color:red;font-weight:bold;">${msg}</p>`;
+                }
+            </script>
+        </div>
+
+        <form action="../php/login.php" method="POST">
+            <input type="text" name="username" placeholder="Enter Username" required><br>
+            <input type="password" name="password" placeholder="Enter Password" required><br>
+            <button type="submit">Login</button>
+        </form>
+    </main>
+
+    <div data-include="footer.html"></div>
+</body>
+</html>
